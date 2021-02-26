@@ -42,11 +42,11 @@ impl ShyObject {
         }
     }
 
-    pub fn as_deref(&self) -> impl Deref<Target = dyn ShyAssociation + Send + Sync> {
+    pub fn as_deref(&self) -> impl Deref<Target = dyn ShyAssociation + Send + Sync> + '_ {
         self.association.read().unwrap()
     }
 
-    pub fn as_deref_mut(&self) -> impl DerefMut<Target = dyn ShyAssociation + Send + Sync> {
+    pub fn as_deref_mut(&self) -> impl DerefMut<Target = dyn ShyAssociation + Send + Sync> + '_ {
         self.association.write().unwrap()
     }
 

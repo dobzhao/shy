@@ -260,10 +260,10 @@ impl<'a> ExecutionContext<'a> {
         map.insert("min".into(), Ctx::shy_aggregate_func("min".into(), &ShyScalar::Rational(f64::MAX), 
             |a,b| match a.partial_cmp(&b) { Some(Ordering::Less) => a.clone(), _ => b.clone() }));
         map.insert("sum".into(), Ctx::shy_aggregate_func("sum".into(), &ShyScalar::Rational(0_f64), 
-            |a,b| { { if let ShyValue::Scalar(result) = ShyValue::add(&ShyValue::Scalar(a.clone()), &ShyValue::Scalar(b.clone())) { return result; } }
+            |a,b| { if let ShyValue::Scalar(result) = ShyValue::add(&ShyValue::Scalar(a.clone()), &ShyValue::Scalar(b.clone())) { return result; }
                 ShyScalar::Error(format!("Unable to add {:?} + {:?}", a, b))}));
         map.insert("product".into(), Ctx::shy_aggregate_func("product".into(), &ShyScalar::Rational(1_f64), 
-            |a,b| { { if let ShyValue::Scalar(result) = ShyValue::multiply(&ShyValue::Scalar(a.clone()), &ShyValue::Scalar(b.clone())) { return result; } }
+            |a,b| { if let ShyValue::Scalar(result) = ShyValue::multiply(&ShyValue::Scalar(a.clone()), &ShyValue::Scalar(b.clone())) { return result; }
                 ShyScalar::Error(format!("Unable to multiply {:?} * {:?}", a, b))}));
 
         map
